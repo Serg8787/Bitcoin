@@ -1,6 +1,6 @@
-package com.example.bitcoin
+package com.example.bitcoin.model
 
-data class USD(
+data class EUR(
     val code: String,
     val description: String,
     val rate: String,

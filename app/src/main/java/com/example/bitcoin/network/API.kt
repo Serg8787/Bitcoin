@@ -1,8 +1,8 @@
-package com.example.bitcoin
+package com.example.bitcoin.network
 
+import com.example.bitcoin.model.Bitcoin
 import retrofit2.Call
 import retrofit2.http.GET
-import java.util.*
 
 interface API {
 

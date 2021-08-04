@@ -1,4 +1,4 @@
-package com.example.bitcoin
+package com.example.bitcoin.network
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

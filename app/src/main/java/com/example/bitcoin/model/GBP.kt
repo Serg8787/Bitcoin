@@ -1,4 +1,4 @@
-package com.example.bitcoin
+package com.example.bitcoin.model
 
 data class GBP(
     val code: String,
