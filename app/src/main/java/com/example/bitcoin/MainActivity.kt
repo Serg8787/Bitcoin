@@ -13,6 +13,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        supportActionBar?.hide()
+        getData()
 
         Glide
             .with(this)
@@ -20,22 +22,36 @@ class MainActivity : AppCompatActivity() {
             .into(ivBitcoin);
 
 
+        ivRefresh.setOnClickListener {
+            getData()
+        }
 
+    }
+    fun getData(){
         val retrofit = RetrofitClient.getClient("https://api.coindesk.com/").create(API::class.java)
         retrofit.getBitcoin().enqueue(object : Callback<Bitcoin> {
             override fun onResponse(call: Call<Bitcoin>, response: Response<Bitcoin>) {
                 if (response.body() != null) {
-                    tvTime.text = response.body()?.chartName
-                    // не нужен, про безопасность или куда то вниз
-//                    tvDiclaimer.text = response.body()?.disclaimer
-//
+                    tvBitcoin.text = response.body()?.chartName
+                    tvDeclaimer.text = response.body()?.disclaimer
+
+                    tvUSDcode.text = response.body()?.bpi?.USD?.code
+                    tvUSDdescription.text = response.body()?.bpi?.USD?.description
+                    tvUSDrate.text = response.body()?.bpi?.USD?.rate
+
                     tvEURcode.text = response.body()?.bpi?.EUR?.code
                     tvEURdescription.text = response.body()?.bpi?.EUR?.description
                     tvEURrate.text = response.body()?.bpi?.EUR?.rate
-                    tvEURrate_float.text = response.body()?.bpi?.EUR?.rate_float.toString()
-                    tvEURsymbol.text = response.body()?.bpi?.EUR?.symbol
 
-                    Log.d("MyLOG", "onRespose" + response.body()?.chartName)
+                    tvGBRcode.text = response.body()?.bpi?.GBP?.code
+                    tvGBRdescription.text = response.body()?.bpi?.GBP?.description
+                    tvGBRrate.text = response.body()?.bpi?.GBP?.rate
+
+                    tvTimeUpdated.text = response.body()?.time?.updated
+                    tvTimeUpdateduk.text = response.body()?.time?.updateduk
+
+
+                    Log.d("MyLOG", "onRespose")
                 }
             }
 

@@ -12,6 +12,6 @@ interface API {
     @GET("v1/bpi/currentprice.json/")
     fun getBitcoin(): Call<Bitcoin>
 
-    @GET("v1/bpi/currentprice.json/")
-    fun getEUR(): Call<EUR>
+//    @GET("v1/bpi/currentprice.json/")
+//    fun getEUR(): Call<EUR>
 }
